@@ -1,58 +1,53 @@
+Cypress.Commands.add('login', (username = 'standard_user', password = 'secret_sauce') => {
+    cy.visit("https://www.saucedemo.com/");
+    cy.get('[data-test="username"]').type(username);
+    cy.get('[data-test="password"]').type(password);
+    cy.get('[data-test="login-button"]').click();
+});
+
+
+
 describe('Site Saucedemo',() => {
 
     // Testul numarul 1
-//     it('Login with Wrong credentials!', ()=> {
-//         cy.visit("https://www.saucedemo.com/");
-//         cy.get('[data-test="username"]').type('WrongUser');
-//         cy.get('[data-test="password"]').type('WrongPass');
-//         cy.get('[data-test="login-button"]').click();
-//         cy.get('[data-test="error"]').should('exist')
-//     })
+//   it('Login with Wrong credentials!', () => {
+//     cy.login('WrongUser', 'WrongPass');
+//     cy.get('[data-test="error"]').should('exist');
+// });
 
 //   // Testul numarul 2
-//   it('Login with Correct credentials!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
-//     cy.url().should('include', 'inventory')   
-// })
+//  it('Login with Correct credentials!', () => {
+//     cy.login();
+//     cy.url().should('include', 'inventory');
+// });
 
-//  // Testul numarul 3
+ // Testul numarul 3
 //  it('Logout!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
+//     cy.login();
 //     cy.get('.bm-burger-button').click();
 //     cy.get('[data-test="logout-sidebar-link"]').should('exist');
 //     cy.get('[data-test="logout-sidebar-link"]').click()
 // })
  // Testul numarul 4
-//  it('Open & close Menu! ', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
-//     cy.get('.bm-burger-button').click();
-//     cy.get('#react-burger-cross-btn').click()
-// })
+    it('Open & close Menu! ', ()=> {
+       cy.login();
+       cy.get('.bm-burger-button').click();
+       cy.get('.bm-menu').should('be.visible');
+       cy.get('#react-burger-cross-btn').click();
+       cy.get('.bm-menu').should('not.be.visible');
+       cy.get('.bm-burger-button').should('be.visible')
+})
+
 // // Testul numarul 5
 // it('Add product in cart!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
+//     cy.login();
 //     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
 //     cy.get('[data-test="shopping-cart-link"]').click();
 //     cy.get('[data-test="inventory-item"]').should('contain', 'Backpack')
 // })
 // Testul numarul 6
 // it('Delete product in cart!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
+//     cy.login();
 //     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
 //     cy.get('[data-test="shopping-cart-link"]').click();
 //     cy.get('[data-test="inventory-item"]').should('contain', 'Backpack');
@@ -63,10 +58,7 @@ describe('Site Saucedemo',() => {
 
 // Testul numarul 7
 // it('Order a product!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
+//     cy.login();
 //     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
 //     cy.get('[data-test="shopping-cart-link"]').click();
 //     cy.get('[data-test="checkout"]').click();
@@ -81,25 +73,19 @@ describe('Site Saucedemo',() => {
 
 //   // Testul numarul 8
 //   it('Open product page details!', ()=> {
-//     cy.visit("https://www.saucedemo.com/");
-//     cy.get('[data-test="username"]').type('standard_user');
-//     cy.get('[data-test="password"]').type('secret_sauce');
-//     cy.get('[data-test="login-button"]').click();
+//     cy.login();
 //     cy.url().should('include', 'inventory');
 //     cy.get('[data-test="inventory-item-sauce-labs-backpack-img"]').click();
 //     cy.get('.inventory_details_desc_container').should('be.visible')  
 // })
 
  // Testul numarul 9
- it('Back to products button!', ()=> {
-    cy.visit("https://www.saucedemo.com/");
-    cy.get('[data-test="username"]').type('standard_user');
-    cy.get('[data-test="password"]').type('secret_sauce');
-    cy.get('[data-test="login-button"]').click();
-    cy.url().should('include', '/inventory.html');
-    cy.get('[data-test="inventory-item-sauce-labs-backpack-img"]').click();
-    cy.get('[data-test="back-to-products"]').click();
-    cy.url().should('include', '/inventory.html')
-})
+//  it('Back to products button!', ()=> {
+//     cy.login();
+//     cy.url().should('include', '/inventory.html');
+//     cy.get('[data-test="inventory-item-sauce-labs-backpack-img"]').click();
+//     cy.get('[data-test="back-to-products"]').click();
+//     cy.url().should('include', '/inventory.html')
+// })
 
 })

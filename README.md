@@ -3,7 +3,6 @@
 ## About
 This repository contains automated test scripts written in Cypress for testing various functionalities of web applications. The test scenarios cover login validation, product management, and user interactions.
 
-Tests on https://www.saucedemo.com
 ## Test Scenarios
 - **Login Tests**
   - Login with incorrect credentials
@@ -20,13 +19,15 @@ Tests on https://www.saucedemo.com
   - Remove product from cart
   - Complete an order
 
+Tests on https://www.saucedemo.com
     ![image](https://github.com/user-attachments/assets/803b0765-ff32-4665-b005-cdfa7e9a4ac3)
 
-Tests on https: (https://www.linkedin.com)
+
 ## Test Scenarios
 - **Login Test**
   - Login with correct credentials
-  
+
+Tests on https: (https://www.linkedin.com)
  ![image](https://github.com/user-attachments/assets/b04d849c-4b48-4fec-8202-760408c67fd2)
 
     
